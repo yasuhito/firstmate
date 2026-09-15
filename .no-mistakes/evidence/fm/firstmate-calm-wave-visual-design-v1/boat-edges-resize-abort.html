@@ -1,0 +1,96 @@
+<!doctype html><meta charset="utf-8"><title>Calm working ship: resize reflow, both edge reversals at 30 columns, abort clears it, second run resumes</title><style>body{background:#1e1e1e;color:#ddd;font-family:"DejaVu Sans Mono","Noto Sans Mono",monospace;font-size:15px;margin:16px;width:max-content}h2{font:600 13px sans-serif;color:#9aa;margin:14px 0 4px}pre{margin:0;line-height:1.25;background:#141414;padding:8px;border:1px solid #333}</style><h1 style="font:600 16px sans-serif">Calm working ship: resize reflow, both edge reversals at 30 columns, abort clears it, second run resumes</h1><h2>resized to 100 columns (single reflowed row)</h2><pre><span style=""> </span><span style="color:rgb(138,190,183);font-weight:bold;">pi</span><span style="color:rgb(102,102,102);"> v0.85.1</span>
+<span style=""> </span><span style="color:rgb(102,102,102);">escape</span><span style="color:rgb(128,128,128);"> interrupt · </span><span style="color:rgb(102,102,102);">ctrl+c/ctrl+d</span><span style="color:rgb(128,128,128);"> clear/exit · </span><span style="color:rgb(102,102,102);">/</span><span style="color:rgb(128,128,128);"> commands · </span><span style="color:rgb(102,102,102);">!</span><span style="color:rgb(128,128,128);"> bash · </span><span style="color:rgb(102,102,102);">ctrl+o</span><span style="color:rgb(128,128,128);"> more</span>
+<span style=""> </span><span style="color:rgb(102,102,102);">Press ctrl+o to show full startup help and loaded resources.</span>
+
+<span style=""> </span><span style="color:rgb(102,102,102);">Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.</span>
+
+<span style="color:rgb(240,198,116);">[Extensions]</span>
+<span style="color:rgb(102,102,102);">  boat-lab.ts, fm-calm.ts</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style="">                                                   </span><span style="color:#c9a227;">◿│</span><span style="color:#c0392b;">◣</span>
+<span style="color:#22a7c9;">▄▃▃</span><span style="color:#2f6fdb;">▂▂▁▁▁▁▁▂▂</span><span style="color:#22a7c9;">▃▃▄▄▄▄▄▃▃</span><span style="color:#2f6fdb;">▂▂▁▁▁▁▁▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▂▁▁▁▁▁</span><span style="color:#c9a227;">╲</span><span style="color:#2f6fdb;">▁▁▁</span><span style="color:#c9a227;">╱</span><span style="color:#2f6fdb;">▁▁▁▁▁▁▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▃▃</span><span style="color:#2f6fdb;">▂▂▂▁▁▁▁▁▁▂▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▂</span>
+<span style="color:rgb(80,80,80);">────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span style="color:#1e1e1e;background:#ddd;"> </span>
+<span style="color:rgb(80,80,80);">────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span style="color:rgb(102,102,102);">/tmp/fm-calm-lab-1199287/project (master)</span>
+<span style="color:rgb(102,102,102);">0.1%/4.1k (auto)                                                                                slow</span></pre><h2>30 columns: frame after left-edge reversal (hull was at column 1)</h2><pre><span style="color:rgb(240,198,116);">[Extensions]</span>
+<span style="color:rgb(102,102,102);">  boat-lab.ts, fm-calm.ts</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style=""> </span><span style="color:rgb(204,102,102);">Operation aborted</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style="">  </span><span style="color:#c9a227;">◿│</span><span style="color:#c0392b;">◣</span>
+<span style="color:#2f6fdb;">▁</span><span style="color:#c9a227;">╲</span><span style="color:#2f6fdb;">▁▁▁</span><span style="color:#c9a227;">╱</span><span style="color:#2f6fdb;">▁▁▁▁▁▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▁▁▁▁</span>
+<span style="color:rgb(80,80,80);">──────────────────────────────</span>
+<span style="color:#1e1e1e;background:#ddd;"> </span>
+<span style="color:rgb(80,80,80);">──────────────────────────────</span>
+<span style="color:rgb(102,102,102);">/tmp/fm-calm-lab-1199287/pr...</span>
+<span style="">0.1%/4.1k (auto)          slow</span></pre><h2>30 columns: frame after right-edge reversal (hull was at column 26)</h2><pre><span style="color:rgb(240,198,116);">[Extensions]</span>
+<span style="color:rgb(102,102,102);">  boat-lab.ts, fm-calm.ts</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style=""> </span><span style="color:rgb(204,102,102);">Operation aborted</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style="">                         </span><span style="color:#c9a227;">◿│</span><span style="color:#c0392b;">◣</span>
+<span style="color:#2f6fdb;">▁▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▂▁▁▁▁▁▁</span><span style="color:#c9a227;">╲</span><span style="color:#2f6fdb;">▁▁▁</span><span style="color:#c9a227;">╱</span><span style="color:#2f6fdb;">▁</span>
+<span style="color:rgb(80,80,80);">──────────────────────────────</span>
+<span style="color:#1e1e1e;background:#ddd;"> </span>
+<span style="color:rgb(80,80,80);">──────────────────────────────</span>
+<span style="color:rgb(102,102,102);">/tmp/fm-calm-lab-1199287/pr...</span>
+<span style="">0.1%/4.1k (auto)          slow</span></pre><h2>after Escape: ship gone, no Working... row</h2><pre><span style=""> </span><span style="color:rgb(138,190,183);font-weight:bold;">pi</span><span style="color:rgb(102,102,102);"> v0.85.1</span>
+<span style=""> </span><span style="color:rgb(102,102,102);">escape</span><span style="color:rgb(128,128,128);"> interrupt · </span><span style="color:rgb(102,102,102);">ctrl+c/ctrl+d</span><span style="color:rgb(128,128,128);"> clear/exit · </span><span style="color:rgb(102,102,102);">/</span><span style="color:rgb(128,128,128);"> commands · </span><span style="color:rgb(102,102,102);">!</span><span style="color:rgb(128,128,128);"> bash · </span><span style="color:rgb(102,102,102);">ctrl+o</span><span style="color:rgb(128,128,128);"> more</span>
+<span style=""> </span><span style="color:rgb(102,102,102);">Press ctrl+o to show full startup help and loaded resources.</span>
+
+<span style=""> </span><span style="color:rgb(102,102,102);">Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.</span>
+
+<span style="color:rgb(240,198,116);">[Extensions]</span>
+<span style="color:rgb(102,102,102);">  boat-lab.ts, fm-calm.ts</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style=""> </span><span style="color:rgb(204,102,102);">Operation aborted</span>
+
+<span style="color:rgb(80,80,80);">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span style="color:#1e1e1e;background:#ddd;"> </span>
+<span style="color:rgb(80,80,80);">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span style="color:rgb(102,102,102);">/tmp/fm-calm-lab-1199287/project (master)</span>
+<span style="color:rgb(102,102,102);">0.1%/4.1k (auto)                                                                                                    slow</span></pre><h2>second /boat in same session: resumes from last column</h2><pre><span style="color:rgb(240,198,116);">[Extensions]</span>
+<span style="color:rgb(102,102,102);">  boat-lab.ts, fm-calm.ts</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style=""> </span><span style="color:rgb(204,102,102);">Operation aborted</span>
+
+
+<span style=""> </span><span style="color:rgb(212,212,212);">LAB_PROMPT</span>
+
+
+<span style="">                      </span><span style="color:#c9a227;">◿│</span><span style="color:#c0392b;">◣</span>
+<span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▂▁▁▁▁▁▁</span><span style="color:#c9a227;">╲</span><span style="color:#2f6fdb;">▁▁▁</span><span style="color:#c9a227;">╱</span><span style="color:#2f6fdb;">▁▁▁▁▁▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▁▁▁▁▁▁▂▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▁▁▁▁▁▁▂▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▃▃▃</span><span style="color:#2f6fdb;">▂▂▂▁▁▁▁▁▁▂▂</span><span style="color:#22a7c9;">▃▃▃▄▄▄▄▄▄▃▃</span><span style="color:#2f6fdb;">▂▂▁▁▁▁▁▁</span>
+<span style="color:rgb(80,80,80);">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span style="color:#1e1e1e;background:#ddd;"> </span>
+<span style="color:rgb(80,80,80);">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span style="color:rgb(102,102,102);">/tmp/fm-calm-lab-1199287/project (master)</span>
+<span style="color:rgb(102,102,102);">0.1%/4.1k (auto)                                                                                                    slow</span></pre>
