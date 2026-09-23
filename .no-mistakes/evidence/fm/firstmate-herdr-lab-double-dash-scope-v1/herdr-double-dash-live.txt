@@ -1,0 +1,13 @@
+lab: fm-lab-dd-live-1144877-32723
+lab pane: w1:p1
+start Pi with arguments after --
+{"id":"cli:agent:start","result":{"agent":{"agent":"pi","agent_status":"idle","cwd":"/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M385JE3KRKMW1VVSYK9KE688","focused":true,"foreground_cwd":"/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M385JE3KRKMW1VVSYK9KE688","interactive_ready":true,"name":"dd-probe","pane_id":"w1:p1","revision":2,"state_change_seq":1,"tab_id":"w1:t1","terminal_id":"term_65c2de75bdc4c1","terminal_title":"π - 01M385JE3KRKMW1VVSYK9KE688","terminal_title_stripped":"π - 01M385JE3KRKMW1VVSYK9KE688","workspace_id":"w1"},"argv":["pi","--no-session","--offline","--no-extensions","--no-skills","--no-context-files"],"type":"agent_started"}}
+lab agent list:
+{"id":"cli:agent:list","result":{"agents":[{"agent":"pi","agent_status":"idle","cwd":"/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M385JE3KRKMW1VVSYK9KE688","focused":true,"foreground_cwd":"/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M385JE3KRKMW1VVSYK9KE688","interactive_ready":true,"name":"dd-probe","pane_id":"w1:p1","revision":2,"state_change_seq":1,"tab_id":"w1:t1","terminal_id":"term_65c2de75bdc4c1","terminal_title":"π - 01M385JE3KRKMW1VVSYK9KE688","terminal_title_stripped":"π - 01M385JE3KRKMW1VVSYK9KE688","workspace_id":"w1"}],"type":"agent_list"}}
+reject caller session after --:
+fm-herdr-lab: run forbids caller-supplied --session; the helper supplies the lab session
+caller session rejected
+reject leading --:
+fm-herdr-lab: run forbids a leading option before the Herdr subcommand; it could shift a server or session lifecycle operation past the guard or subvert session isolation
+leading delimiter rejected
+teardown: lab removed; default session tripwire unchanged
