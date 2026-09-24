@@ -1,0 +1,12 @@
+SPAWN first-task window=fm-lab-slot-retire-3634154-29210:w1:p2 worktree=/home/yasuhito/.treehouse/project-88997c/1/project
+SPAWN second-task window=fm-lab-slot-retire-3634154-29210:w1:p3 worktree=/home/yasuhito/.treehouse/project-88997c/2/project
+SPAWN owner-task window=fm-lab-slot-retire-3634154-29210:w1:p4 worktree=/home/yasuhito/.treehouse/project-88997c/3/project
+owner claim: task=owner-task
+home=/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M396JYGJ7H48NY4XYTA4A3PB/.slot-live.XJCXRj/home
+OWNER REFUSED: REFUSED: task owner-task's recorded worktree /home/yasuhito/.treehouse/project-88997c/3/project is also task first-task's recorded worktree.
+RETIRED first-task pane w1:p2; owner pane w1:p4 and copy intact; warning: task first-task's recorded worktree /home/yasuhito/.treehouse/project-88997c/3/project was reassigned to task owner-task (home /home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M396JYGJ7H48NY4XYTA4A3PB/.slot-live.XJCXRj/home), which claimed that pool slot after this record was written; that slot is no longer first-task's, so its processes, copy, and claim are left untouched and only first-task's own cleanup runs.
+RETIRED second-task pane w1:p3; owner pane w1:p4 and copy intact; warning: task second-task's recorded worktree /home/yasuhito/.treehouse/project-88997c/3/project was reassigned to task owner-task (home /home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M396JYGJ7H48NY4XYTA4A3PB/.slot-live.XJCXRj/home), which claimed that pool slot after this record was written; that slot is no longer second-task's, so its processes, copy, and claim are left untouched and only second-task's own cleanup runs.
+DIRTY OWNER REFUSED: REFUSED: worktree /home/yasuhito/.treehouse/project-88997c/3/project has uncommitted changes.
+MALFORMED CLAIM REFUSED: REFUSED: task owner-task's recorded worktree /home/yasuhito/.treehouse/project-88997c/3/project carries a slot-owner claim that cannot be read, so the slot cannot be proved to still be this task's; nothing was changed - not even with --force.
+MALFORMED HOME CLAIM REFUSED: REFUSED: task owner-task's recorded worktree /home/yasuhito/.treehouse/project-88997c/3/project carries a slot-owner claim that cannot be read, so the slot cannot be proved to still be this task's; nothing was changed - not even with --force.
+OWNER RETIRED after exclusive clean slot
