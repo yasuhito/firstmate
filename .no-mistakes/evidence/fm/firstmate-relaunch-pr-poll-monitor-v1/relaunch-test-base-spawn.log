@@ -1,0 +1,23 @@
+ok - fm-control relaunch: a same-harness relaunch replaces the agent in the same endpoint and worktree
+ok - fm-control relaunch: pending composer text refuses before the exit command is typed
+ok - fm-control relaunch: an unreadable composer fails safe before the exit command is typed
+ok - fm-control relaunch: a linked spawning home preserves committed and unfinished work in the recorded copy
+ok - fm-control relaunch: durable task metadata survives replacement launch publication
+not ok - relaunch (trace off) turned the armed PR poll into rejected-unauthenticated:
+window=fmses:fm-rl711
+endpoint_task_id=rl711
+worktree=/tmp/fm-control-relaunch.JNUvj7/pr-poll-trace-off-602/wt
+project=/tmp/fm-control-relaunch.JNUvj7/pr-poll-trace-off-602/proj
+harness=claude
+kind=ship
+mode=no-mistakes
+yolo=off
+branch=fm/rl711
+tasktmp=/tmp/fm-rl711
+model=default
+effort=default
+busy_gen=g1791091984.3969926.20751
+spawn_gen=s1791091984.3969548.1332
+pr=https://github.com/example/repo/pull/711
+pr_head=0123456789abcdef0123456789abcdef01234567
+control_relaunch_tx=3969200.20261004T053303Z.15639
