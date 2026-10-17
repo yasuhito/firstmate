@@ -1,0 +1,177 @@
+# Live lab: real Claude crewmate lv1 relaunched via fm-control on a private fm-lab tmux socket
+# lab home /tmp/fm-lab.EV4la7; project demo with local bare origin; fake gh only stands in for the GitHub API (isDraft/headRefOid/state=MERGED)
+# 'watcher verdict' = bin/fm-pr-lib.sh fm_pr_poll_snapshot_capture -> fm_custom_check_snapshot_prepare, the same calls fm-watch.sh makes
+===== 1. register PR (trace off)
+$ bin/fm-pr-check.sh lv1 https://github.com/example/demo/pull/1
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+armed: state/lv1.check.sh
+exit=0
+--- state/lv1.meta (tail)
+branch=fm/lv1
+tasktmp=/tmp/fm-lv1
+model=default
+effort=default
+busy_gen=g1792280742.844747.19545
+spawn_gen=s1792280742.843285.3803
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+--- watcher verdict: authenticated-pr-poll
+===== 2. fm-control relaunch on HEAD (trace off)
+$ bin/fm-control.sh lv1 relaunch --note lab: continue after PR
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+relaunched lv1 harness=claude from=claude model=default effort=default backend=tmux endpoint=primary:fm-lv1 worktree=/home/yasuhito/.treehouse/demo-473a4c/1/demo
+exit=0
+--- state/lv1.meta (tail)
+tasktmp=/tmp/fm-lv1
+model=default
+effort=default
+busy_gen=g1792280797.883090.21466
+spawn_gen=s1792280797.882498.22438
+control_relaunch_tx=880845.20261017T234636Z.12965
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+--- watcher verdict: authenticated-pr-poll
+===== (lab) trace context enabled: config/trace-context present, state/.trace-context-effective = 781664 on
+===== 3. fm-control relaunch on HEAD (trace on)
+$ bin/fm-control.sh lv1 relaunch --note lab: continue with trace on
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+relaunched lv1 harness=claude from=claude model=default effort=default backend=tmux endpoint=primary:fm-lv1 worktree=/home/yasuhito/.treehouse/demo-473a4c/1/demo
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280812.895052.388
+spawn_gen=s1792280812.894462.8183
+control_relaunch_tx=892040.20261017T234651Z.19424
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+--- watcher verdict: authenticated-pr-poll
+===== 4. BASE 07912680 fm-spawn.sh: fm-control relaunch (trace on) - reproduce bug
+$ bin/fm-control.sh lv1 relaunch --note lab: base relaunch
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+relaunched lv1 harness=claude from=claude model=default effort=default backend=tmux endpoint=primary:fm-lv1 worktree=/home/yasuhito/.treehouse/demo-473a4c/1/demo
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280822.903222.1815
+spawn_gen=s1792280822.902608.3420
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+control_relaunch_tx=898061.20261017T234702Z.21843
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+--- watcher verdict: rejected-unauthenticated
+===== 5. real fm-watch.sh on the broken record (fake gh reports MERGED)
+$ env FM_CHECK_INTERVAL=0 timeout 90 bin/fm-watch.sh
+check: /tmp/fm-lab.EV4la7/state/contributions.check.sh: contributions: observation unavailable for https://github.com/example/demo/pull/1 - core read returned an unexpected shape
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280822.903222.1815
+spawn_gen=s1792280822.902608.3420
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+control_relaunch_tx=898061.20261017T234702Z.21843
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+--- watcher verdict: rejected-unauthenticated
+===== (lab) moved state/contributions.check.sh aside: the fake gh cannot answer the contributions read, which otherwise wakes first
+===== 6. real fm-watch.sh on the broken record (fake gh reports MERGED)
+$ env FM_CHECK_INTERVAL=0 timeout 90 bin/fm-watch.sh
+check: rearm-resurface
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280822.903222.1815
+spawn_gen=s1792280822.902608.3420
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+control_relaunch_tx=898061.20261017T234702Z.21843
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+--- watcher verdict: rejected-unauthenticated
+===== 7. real fm-watch.sh again on the broken record (fake gh reports MERGED)
+$ env FM_CHECK_INTERVAL=0 timeout 90 bin/fm-watch.sh
+check: rearm-resurface
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280822.903222.1815
+spawn_gen=s1792280822.902608.3420
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+control_relaunch_tx=898061.20261017T234702Z.21843
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+--- watcher verdict: rejected-unauthenticated
+===== 8. real fm-watch.sh on the broken record (fake gh reports MERGED; FM_WATCH_HANDLING_SUCCESSOR=1 skips the lab's downtime resurface)
+$ env FM_CHECK_INTERVAL=0 FM_WATCH_HANDLING_SUCCESSOR=1 timeout 60 bin/fm-watch.sh
+check: rejected unauthenticated state checks: /tmp/fm-lab.EV4la7/state/lv1.check.sh
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280822.903222.1815
+spawn_gen=s1792280822.902608.3420
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+control_relaunch_tx=898061.20261017T234702Z.21843
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+--- watcher verdict: rejected-unauthenticated
+===== 9. HEAD fm-spawn.sh: fm-control relaunch repairs the broken record (trace on)
+$ bin/fm-control.sh lv1 relaunch --note lab: head relaunch repairs
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.EV4la7
+WARNING: queued wakes pending - drain them with bin/fm-wake-drain.sh before anything else.
+relaunched lv1 harness=claude from=claude model=default effort=default backend=tmux endpoint=primary:fm-lv1 worktree=/home/yasuhito/.treehouse/demo-473a4c/1/demo
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280864.926036.14630
+spawn_gen=s1792280864.925255.22545
+control_relaunch_tx=921675.20261017T234743Z.30175
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+--- watcher verdict: authenticated-pr-poll
+===== 10. real fm-watch.sh after HEAD relaunch (fake gh reports MERGED)
+$ env FM_CHECK_INTERVAL=0 FM_WATCH_HANDLING_SUCCESSOR=1 timeout 60 bin/fm-watch.sh
+check: /tmp/fm-lab.EV4la7/state/lv1.check.sh: merged
+exit=0
+--- state/lv1.meta (tail)
+model=default
+effort=default
+busy_gen=g1792280864.926036.14630
+spawn_gen=s1792280864.925255.22545
+control_relaunch_tx=921675.20261017T234743Z.30175
+traceparent=00-df8a07bbf5e2ee3a04ef3aca09f5f3ca-af35284faff7774e-01
+pr=https://github.com/example/demo/pull/1
+pr_head=766139c3fe65fce577989207a62efe287e32d05f
+--- watcher verdict: rejected-unauthenticated
+===== after step 10: state files for lv1 (poll retired after the merged wake)
+lv1.busy-gen
+lv1.busy-state
+lv1.control-relaunch
+lv1.control-relaunch.brief-prior
+lv1.control-relaunch.meta-prior
+lv1.control-relaunch.note
+lv1.git-hooks
+lv1.inbox
+lv1.meta
+lv1.pr-poll-merge-notified
+lv1.status
+lv1.turn-ended
