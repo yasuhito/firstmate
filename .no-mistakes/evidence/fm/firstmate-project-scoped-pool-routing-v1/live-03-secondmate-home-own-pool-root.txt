@@ -1,0 +1,38 @@
+# Live: secondmate lab home (.fm-secondmate-home=sm-qa2), TREEHOUSE_ROOT still pointing at the shared root holding the foreign slot
+$ bin/fm-spawn.sh live-sm-r1 /tmp/fm-lab.aCxGW3/projects/qa2 --scout
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.aCxGW3
+spawned live-sm-r1 harness=claude kind=scout window=primary:fm-live-sm-r1 worktree=/tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/qa2
+EXIT=0
+slot common git dir: /tmp/fm-lab.aCxGW3/projects/qa2/.git
+slot HEAD=56ba6b1bdc9944995a68a6c8a339a1daf98aa558 origin/main=56ba6b1bdc9944995a68a6c8a339a1daf98aa558
+--- slot owner claim (/tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/.fm-slot-owner) ---
+task=live-sm-r1
+home=/tmp/fm-lab.aCxGW3
+--- state/live-sm-r1.meta (worktree line) ---
+worktree=/tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/qa2
+harness=claude
+kind=scout
+--- shared-root foreign slot untouched: HEAD=3d4f66d622dd58b1870e3b68c96f4b76fba3efba, claim: none
+--- task window pane ---
+ ▐▛███▛█   Claude Code v2.1.302
+▝▜██████▀  Fable 5.1 with medium effort · Claude Max
+ ▝▝   ▝▝   /tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/qa2
+❯ : Firstmate operational input waiting: read '/tmp/fm-lab.aCxGW3/state/operational-inbox/1792288773-3e2c7d0d9cfb4dde.msg' and handle its contents as Firstmate operational input.
+● Firstmate の運用入力を読みます。
+  Read 1 file, listed 1 directory, ran 1 shell command
+● ok
+  ステアリング inbox（live-sm-r1.inbox）に未処理メッセージはありません。ファイル編集は行っていません。
+✻ Cogitated for 10s · done 10:59 AM
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle)
+--- task window normal-screen buffer (command fm-spawn typed) ---
+treehouse --root '/tmp/fm-lab.aCxGW3/state/treehouse' get
+qa2 main ❯ treehouse --root '/tmp/fm-lab.aCxGW3/state/treehouse' get
+A new version of treehouse is available: v2.3.0 → v3.1.4
+Run "treehouse update" to update
+🌳 Setting up worktree...
+🌳 Entered worktree at /tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/qa2. Type 'exit' to return.
+qa2 HEAD ❯ cd -- '/tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/qa2'
+󱞩 /tmp/fm-lab.aCxGW3/state/treehouse/.treehouse/qa2-e30435/1/qa2

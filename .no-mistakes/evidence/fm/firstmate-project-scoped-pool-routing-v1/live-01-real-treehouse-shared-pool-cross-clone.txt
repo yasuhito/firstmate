@@ -1,0 +1,23 @@
+bash-5.3$ cd /tmp/fm-lab.aCxGW3/fixture/mainhome/projects/qa2 && treehouse --root /tmp/fm-lab.aCxGW3/fixture/sharedroot get
+A new version of treehouse is available: v2.3.0 → v3.1.4
+Run "treehouse update" to update
+🌳 Setting up worktree...
+🌳 Entered worktree at /tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/qa2. Type 'exit' to return.
+qa2 HEAD ❯ pwd; git rev-parse --path-format=absolute --git-common-dir
+/tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/qa2
+/tmp/fm-lab.aCxGW3/fixture/mainhome/projects/qa2/.git
+qa2 HEAD ❯ exit
+exit
+🌳 Worktree returned to pool.
+bash-5.3$ cd /tmp/fm-lab.aCxGW3/projects/qa2 && treehouse --root /tmp/fm-lab.aCxGW3/fixture/sharedroot get
+A new version of treehouse is available: v2.3.0 → v3.1.4
+Run "treehouse update" to update
+🌳 Setting up worktree...
+🌳 Entered worktree at /tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/qa2. Type 'exit' to return.
+qa2 HEAD ❯ pwd; git rev-parse --path-format=absolute --git-common-dir
+/tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/qa2
+/tmp/fm-lab.aCxGW3/fixture/mainhome/projects/qa2/.git
+qa2 HEAD ❯ exit
+exit
+🌳 Worktree returned to pool.
+bash-5.3$

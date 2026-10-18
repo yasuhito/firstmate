@@ -1,0 +1,25 @@
+# Live: primary lab home, plain 'treehouse get' (TREEHOUSE_ROOT=disposable shared root) handed a slot of ANOTHER clone of the same origin
+$ bin/fm-spawn.sh live-foreign-r1 /tmp/fm-lab.aCxGW3/projects/qa2 --scout
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.aCxGW3
+error: treehouse get did not enter an isolated worktree within 60s (last seen '/tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/qa2': it belongs to a different clone (its common git dir is '/tmp/fm-lab.aCxGW3/fixture/mainhome/projects/qa2/.git', not the spawning project's '/tmp/fm-lab.aCxGW3/projects/qa2/.git'); spawning project '/tmp/fm-lab.aCxGW3/projects/qa2'); inspect window primary:fm-live-foreign-r1
+EXIT=1
+slot HEAD before=3d4f66d622dd58b1870e3b68c96f4b76fba3efba after=3d4f66d622dd58b1870e3b68c96f4b76fba3efba
+origin/main now=56ba6b1bdc9944995a68a6c8a339a1daf98aa558
+slot reflog unchanged: yes
+slot FETCH_HEAD present: no
+main clone FETCH_HEAD present: YES
+slot owner claim file: ls: cannot access '/tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/.fm-slot-owner': No such file or directory
+task meta: ls: cannot access '/tmp/fm-lab.aCxGW3/state/live-foreign-r1.meta': No such file or directory
+--- task window pane (left for inspection) ---
+treehouse get
+qa2 main ❯ treehouse get
+A new version of treehouse is available: v2.3.0 → v3.1.4
+Run "treehouse update" to update
+🌳 Setting up worktree...
+🌳 Entered worktree at /tmp/fm-lab.aCxGW3/fixture/sharedroot/.treehouse/qa2-e30435/1/qa2. Type 'exit' to return.
+qa2 HEAD ❯
+
+# Note: main clone FETCH_HEAD mtime 2026-10-18 10:57:22.673947965 +0900 predates the spawn (baseline captured 2026-10-18 10:57:56.247104155 +0900); it was written by treehouse's own slot creation in the probe. Owner clone remote refs after spawn:
+3d4f66d622dd58b1870e3b68c96f4b76fba3efba commit	refs/remotes/origin/HEAD
+3d4f66d622dd58b1870e3b68c96f4b76fba3efba commit	refs/remotes/origin/main
+(origin/main advanced to 56ba6b1bdc9944995a68a6c8a339a1daf98aa558 was NOT fetched)
