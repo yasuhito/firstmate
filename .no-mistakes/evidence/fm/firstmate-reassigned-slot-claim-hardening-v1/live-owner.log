@@ -1,0 +1,51 @@
+=== variant: owner (lab /tmp/fm-lab.jsnFME) ===
+--- state: records=[first-task.meta owner-task.meta second-task.meta ] windows=[fm-first-task fm-second-task fm-owner-task ] sentinel=present claim=[task=owner-task home=/tmp/fm-lab.jsnFME ] treehouse-calls=[]
+
+$ fm-teardown.sh owner-task
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.jsnFME
+  | ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  | ●  WATCHER DOWN - SUPERVISION IS OFF
+  | ●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+  | ●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+  | ●  This is a supervision warning only; the guarded operation WILL still run.
+  | ●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+  | ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  | REFUSED: task owner-task's recorded worktree /tmp/fm-lab.jsnFME/pool/1/project is also task first-task's recorded worktree.
+  | Returning that pool slot would kill first-task's processes and reset its copy, so nothing was changed - not even with --force.
+  | Reconcile whichever record is wrong (bin/fm-crew-state.sh owner-task; bin/fm-crew-state.sh first-task), then re-run teardown.
+  exit=1
+--- state: records=[first-task.meta owner-task.meta second-task.meta ] windows=[fm-first-task fm-second-task fm-owner-task ] sentinel=present claim=[task=owner-task home=/tmp/fm-lab.jsnFME ] treehouse-calls=[]
+
+$ fm-teardown.sh first-task
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.jsnFME
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | warning: task first-task's recorded worktree /tmp/fm-lab.jsnFME/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.jsnFME), which claimed that pool slot after this record was written; that slot is no longer first-task's, so its processes, copy, and claim are left untouched and only first-task's own cleanup runs.
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | demo: skipped: no origin remote
+  | teardown first-task complete (window firstmate:fm-first-task; pool slot /tmp/fm-lab.jsnFME/pool/1/project left to task owner-task (home /tmp/fm-lab.jsnFME), which it was reassigned to)
+  | Backlog: first-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.jsnFME/data/backlog.md). Update /tmp/fm-lab.jsnFME/data/backlog.md - move first-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  exit=0
+--- state: records=[owner-task.meta second-task.meta ] windows=[fm-second-task fm-owner-task ] sentinel=present claim=[task=owner-task home=/tmp/fm-lab.jsnFME ] treehouse-calls=[]
+
+$ fm-teardown.sh second-task
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.jsnFME
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | warning: task second-task's recorded worktree /tmp/fm-lab.jsnFME/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.jsnFME), which claimed that pool slot after this record was written; that slot is no longer second-task's, so its processes, copy, and claim are left untouched and only second-task's own cleanup runs.
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | demo: skipped: no origin remote
+  | teardown second-task complete (window firstmate:fm-second-task; pool slot /tmp/fm-lab.jsnFME/pool/1/project left to task owner-task (home /tmp/fm-lab.jsnFME), which it was reassigned to)
+  | Backlog: second-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.jsnFME/data/backlog.md). Update /tmp/fm-lab.jsnFME/data/backlog.md - move second-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  exit=0
+--- state: records=[owner-task.meta ] windows=[fm-owner-task ] sentinel=present claim=[task=owner-task home=/tmp/fm-lab.jsnFME ] treehouse-calls=[]
+
+$ fm-teardown.sh owner-task --force
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.jsnFME
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | teardown: reaping leaked worktree process(es) for owner-task: 852651
+  | demo: skipped: no origin remote
+  | teardown owner-task complete (window firstmate:fm-owner-task, worktree /tmp/fm-lab.jsnFME/pool/1/project)
+  | Backlog: owner-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.jsnFME/data/backlog.md). Update /tmp/fm-lab.jsnFME/data/backlog.md - move owner-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  exit=0
+/home/yasuhito/.no-mistakes/evidence/01M56VVQFQY2W2R4RTQW10JR6C/live-three-records.sh: line 38: /tmp/fm-lab.jsnFME/pool/1/.fm-slot-owner: No such file or directory
+--- state: records=[] windows=[] sentinel=GONE claim=[ABSENT] treehouse-calls=[treehouse <return> <--force> </tmp/fm-lab.jsnFME/pool/1/project> ]
+=== lab removed: yes ===

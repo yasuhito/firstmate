@@ -1,0 +1,42 @@
+=== variant: repeated-same (lab /tmp/fm-lab.ytAwkc) ===
+--- state: records=[first-task.meta owner-task.meta second-task.meta ] windows=[fm-first-task fm-second-task fm-owner-task ] sentinel=present claim=[task=owner-task task=owner-task home=/tmp/fm-lab.ytAwkc home=/tmp/fm-lab.ytAwkc ] treehouse-calls=[]
+
+$ fm-teardown.sh first-task
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.ytAwkc
+  | ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  | ●  WATCHER DOWN - SUPERVISION IS OFF
+  | ●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+  | ●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+  | ●  This is a supervision warning only; the guarded operation WILL still run.
+  | ●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+  | ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  | warning: task first-task's recorded worktree /tmp/fm-lab.ytAwkc/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.ytAwkc), which claimed that pool slot after this record was written; that slot is no longer first-task's, so its processes, copy, and claim are left untouched and only first-task's own cleanup runs.
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | demo: skipped: no origin remote
+  | teardown first-task complete (window firstmate:fm-first-task; pool slot /tmp/fm-lab.ytAwkc/pool/1/project left to task owner-task (home /tmp/fm-lab.ytAwkc), which it was reassigned to)
+  | Backlog: first-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.ytAwkc/data/backlog.md). Update /tmp/fm-lab.ytAwkc/data/backlog.md - move first-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  exit=0
+--- state: records=[owner-task.meta second-task.meta ] windows=[fm-second-task fm-owner-task ] sentinel=present claim=[task=owner-task task=owner-task home=/tmp/fm-lab.ytAwkc home=/tmp/fm-lab.ytAwkc ] treehouse-calls=[]
+
+$ fm-teardown.sh second-task
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.ytAwkc
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | warning: task second-task's recorded worktree /tmp/fm-lab.ytAwkc/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.ytAwkc), which claimed that pool slot after this record was written; that slot is no longer second-task's, so its processes, copy, and claim are left untouched and only second-task's own cleanup runs.
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | demo: skipped: no origin remote
+  | teardown second-task complete (window firstmate:fm-second-task; pool slot /tmp/fm-lab.ytAwkc/pool/1/project left to task owner-task (home /tmp/fm-lab.ytAwkc), which it was reassigned to)
+  | Backlog: second-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.ytAwkc/data/backlog.md). Update /tmp/fm-lab.ytAwkc/data/backlog.md - move second-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  exit=0
+--- state: records=[owner-task.meta ] windows=[fm-owner-task ] sentinel=present claim=[task=owner-task task=owner-task home=/tmp/fm-lab.ytAwkc home=/tmp/fm-lab.ytAwkc ] treehouse-calls=[]
+
+$ fm-teardown.sh owner-task
+  | fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.ytAwkc
+  | WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+  | REFUSED: worktree /tmp/fm-lab.ytAwkc/pool/1/project has uncommitted changes.
+  | uncommitted changes present (untracked-only leftovers)
+  | untracked paths (up to 10):
+  |   sentinel
+  | Commit them (or get the captain's explicit OK to discard, then --force).
+  exit=1
+--- state: records=[owner-task.meta ] windows=[fm-owner-task ] sentinel=present claim=[task=owner-task task=owner-task home=/tmp/fm-lab.ytAwkc home=/tmp/fm-lab.ytAwkc ] treehouse-calls=[]
+=== lab removed: yes ===

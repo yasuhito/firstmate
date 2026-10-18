@@ -1,0 +1,143 @@
+== S1: initial state (3 records share pool slot 1, claim names owner-task)
+  state records: first-task.meta owner-task.meta second-task.meta 
+  tmux windows: fm-first-task fm-second-task fm-owner-task 
+  slot claim: task=owner-task home=/tmp/fm-lab.j05Ut3 
+  sentinel: present
+  treehouse calls: 
+== S2: owner-task teardown while 2 other records remain (expect refusal)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.j05Ut3
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REFUSED: task owner-task's recorded worktree /tmp/fm-lab.j05Ut3/pool/1/project is also task first-task's recorded worktree.
+Returning that pool slot would kill first-task's processes and reset its copy, so nothing was changed - not even with --force.
+Reconcile whichever record is wrong (bin/fm-crew-state.sh owner-task; bin/fm-crew-state.sh first-task), then re-run teardown.
+  rc=1
+  state records: first-task.meta owner-task.meta second-task.meta 
+  tmux windows: fm-first-task fm-second-task fm-owner-task 
+  slot claim: task=owner-task home=/tmp/fm-lab.j05Ut3 
+  sentinel: present
+  treehouse calls: 
+== S3: teardown first-task (non-owner, no --force; expect retire w/o slot change)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.j05Ut3
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+warning: task first-task's recorded worktree /tmp/fm-lab.j05Ut3/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.j05Ut3), which claimed that pool slot after this record was written; that slot is no longer first-task's, so its processes, copy, and claim are left untouched and only first-task's own cleanup runs.
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+/tmp/fm-lab.j05Ut3/project: skipped: no origin remote
+teardown first-task complete (window firstmate:fm-first-task; pool slot /tmp/fm-lab.j05Ut3/pool/1/project left to task owner-task (home /tmp/fm-lab.j05Ut3), which it was reassigned to)
+Backlog: first-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.j05Ut3/data/backlog.md). Update /tmp/fm-lab.j05Ut3/data/backlog.md - move first-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  rc=0
+  state records: owner-task.meta second-task.meta 
+  tmux windows: fm-second-task fm-owner-task 
+  slot claim: task=owner-task home=/tmp/fm-lab.j05Ut3 
+  sentinel: present
+  treehouse calls: 
+== S3: teardown second-task (non-owner, no --force; expect retire w/o slot change)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.j05Ut3
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+warning: task second-task's recorded worktree /tmp/fm-lab.j05Ut3/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.j05Ut3), which claimed that pool slot after this record was written; that slot is no longer second-task's, so its processes, copy, and claim are left untouched and only second-task's own cleanup runs.
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+/tmp/fm-lab.j05Ut3/project: skipped: no origin remote
+teardown second-task complete (window firstmate:fm-second-task; pool slot /tmp/fm-lab.j05Ut3/pool/1/project left to task owner-task (home /tmp/fm-lab.j05Ut3), which it was reassigned to)
+Backlog: second-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.j05Ut3/data/backlog.md). Update /tmp/fm-lab.j05Ut3/data/backlog.md - move second-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  rc=0
+  state records: owner-task.meta 
+  tmux windows: fm-owner-task 
+  slot claim: task=owner-task home=/tmp/fm-lab.j05Ut3 
+  sentinel: present
+  treehouse calls: 
+== S4: owner-task teardown now exclusive (expect slot return + claim removal)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.j05Ut3
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+teardown: reaping leaked worktree process(es) for owner-task: 1560116
+/tmp/fm-lab.j05Ut3/project: skipped: no origin remote
+teardown owner-task complete (window firstmate:fm-owner-task, worktree /tmp/fm-lab.j05Ut3/pool/1/project)
+Backlog: owner-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.j05Ut3/data/backlog.md). Update /tmp/fm-lab.j05Ut3/data/backlog.md - move owner-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  rc=0
+  state records: 
+  tmux windows: 
+/tmp/fm-live-drive.sh: line 37: /tmp/fm-lab.j05Ut3/pool/1/.fm-slot-owner: No such file or directory
+  slot claim: <absent>
+  sentinel: present
+  treehouse calls: treehouse return --force /tmp/fm-lab.j05Ut3/pool/1/project;
+== S5[conflicting claim]: teardown first-task (expect refusal, nothing changed)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.eorLAQ
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+warning: task first-task's recorded worktree /tmp/fm-lab.eorLAQ/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.eorLAQ), which claimed that pool slot after this record was written; that slot is no longer first-task's, so its processes, copy, and claim are left untouched and only first-task's own cleanup runs.
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+/tmp/fm-lab.eorLAQ/project: skipped: no origin remote
+teardown first-task complete (window firstmate:fm-first-task; pool slot /tmp/fm-lab.eorLAQ/pool/1/project left to task owner-task (home /tmp/fm-lab.eorLAQ), which it was reassigned to)
+Backlog: first-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.eorLAQ/data/backlog.md). Update /tmp/fm-lab.eorLAQ/data/backlog.md - move first-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  rc=0
+  state records: owner-task.meta second-task.meta 
+  tmux windows: fm-second-task fm-owner-task 
+  slot claim: task=first-task task=owner-task home=/tmp/fm-lab.eorLAQ 
+  sentinel: present
+  treehouse calls: 
+== S5[unreadable claim]: teardown first-task (expect refusal, nothing changed)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.A3yXg4
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REFUSED: task first-task's recorded worktree /tmp/fm-lab.A3yXg4/pool/1/project is also task owner-task's recorded worktree.
+Returning that pool slot would kill owner-task's processes and reset its copy, so nothing was changed - not even with --force.
+Reconcile whichever record is wrong (bin/fm-crew-state.sh first-task; bin/fm-crew-state.sh owner-task), then re-run teardown.
+  rc=1
+  state records: first-task.meta owner-task.meta second-task.meta 
+  tmux windows: fm-first-task fm-second-task fm-owner-task 
+  slot claim: not-a-claim 
+  sentinel: present
+  treehouse calls: 
+== S5[absent claim]: teardown first-task (expect refusal, nothing changed)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.DEpHgL
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REFUSED: task first-task's recorded worktree /tmp/fm-lab.DEpHgL/pool/1/project is also task owner-task's recorded worktree.
+Returning that pool slot would kill owner-task's processes and reset its copy, so nothing was changed - not even with --force.
+Reconcile whichever record is wrong (bin/fm-crew-state.sh first-task; bin/fm-crew-state.sh owner-task), then re-run teardown.
+  rc=1
+  state records: first-task.meta owner-task.meta second-task.meta 
+  tmux windows: fm-first-task fm-second-task fm-owner-task 
+/tmp/fm-live-drive.sh: line 37: /tmp/fm-lab.DEpHgL/pool/1/.fm-slot-owner: No such file or directory
+  slot claim: <absent>
+  sentinel: present
+  treehouse calls: 
+== S5[empty-task-first claim]: teardown first-task (expect refusal, nothing changed)
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.9G2ldF
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  3 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+warning: task first-task's recorded worktree /tmp/fm-lab.9G2ldF/pool/1/project was reassigned to task owner-task (home /tmp/fm-lab.9G2ldF), which claimed that pool slot after this record was written; that slot is no longer first-task's, so its processes, copy, and claim are left untouched and only first-task's own cleanup runs.
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+/tmp/fm-lab.9G2ldF/project: skipped: no origin remote
+teardown first-task complete (window firstmate:fm-first-task; pool slot /tmp/fm-lab.9G2ldF/pool/1/project left to task owner-task (home /tmp/fm-lab.9G2ldF), which it was reassigned to)
+Backlog: first-task just finished (this home keeps no markdown backlog at /tmp/fm-lab.9G2ldF/data/backlog.md). Update /tmp/fm-lab.9G2ldF/data/backlog.md - move first-task to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+  rc=0
+  state records: owner-task.meta second-task.meta 
+  tmux windows: fm-second-task fm-owner-task 
+  slot claim: task= task=owner-task home=/tmp/fm-lab.9G2ldF 
+  sentinel: present
+  treehouse calls: 
