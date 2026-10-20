@@ -1,89 +1,82 @@
+homeA=/tmp/fm-poolroot-live.oKg2/labA id=0ddafeda86af
+homeB=/tmp/fm-poolroot-live.oKg2/labB id=83ff0f99163d
 
-=== S1 primary home spawn allocates from <primary>/state/treehouse ===
-fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/primary
-warning: /tmp/fm-lab.gyZUYm/primary/data/p1/launch-brief.md records no ship branch; defaulting to legacy branch fm/p1
-warning: /tmp/fm-lab.gyZUYm/primary/data/p1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode local-only - confirm its definition of done matches
-notice: p1 ships mode=local-only while the standing posture for qa2 is no-mistakes - less rigor than the captain's standing posture; proceed only on a current explicit captain instruction or an intake judgment you can state
-spawned p1 harness=sh kind=ship mode=local-only yolo=off window=firstmate:fm-p1 worktree=/tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
-exit=0
-recorded worktree=/tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
-worktree common dir=/tmp/fm-lab.gyZUYm/primary/projects/qa2/.git
-project common dir=/tmp/fm-lab.gyZUYm/primary/projects/qa2/.git
-pool roots under primary state:
-default root ($HOME/.treehouse) contents (pools would appear as <name>-<hash>/):
-update-check.json
-firstmate:bash cwd=/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M56ZCQT1D1HEF0CZ0CWH76YK
-firstmate:fm-p1 cwd=/tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
+===== S1 primary home allocates from its own dedicated root
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labA TREEHOUSE_ROOT=/tmp/fm-poolroot-live.oKg2/th bin/fm-spawn.sh s1-primary /tmp/fm-poolroot-live.oKg2/primary-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labA
+spawned s1-primary harness=sleep kind=scout window=primary:fm-s1-primary worktree=/tmp/fm-poolroot-live.oKg2/th/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/1/qa2
+rc=0
+recorded worktree=/tmp/fm-poolroot-live.oKg2/th/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/1/qa2
+worktree common dir=/tmp/fm-poolroot-live.oKg2/primary-side/qa2/.git
+project common dir=/tmp/fm-poolroot-live.oKg2/primary-side/qa2/.git
+S1 ROOT-OK
 
-=== S2 secondmate home spawn allocates from <sm-home>/state/treehouse ===
-fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/sm-home
-warning: /tmp/fm-lab.gyZUYm/sm-home/data/s1/launch-brief.md records no ship branch; defaulting to legacy branch fm/s1
-warning: /tmp/fm-lab.gyZUYm/sm-home/data/s1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode local-only - confirm its definition of done matches
-notice: s1 ships mode=local-only while the standing posture for qa2 is no-mistakes - less rigor than the captain's standing posture; proceed only on a current explicit captain instruction or an intake judgment you can state
-spawned s1 harness=sh kind=ship mode=local-only yolo=off window=firstmate:fm-s1 worktree=/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
-exit=0
-recorded worktree=/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
-worktree common dir=/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git
-project common dir=/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git
-pool roots under sm state:
-default root contents:
-update-check.json
+===== S2 secondmate home with same-origin same-name clone allocates from a different root
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labB TREEHOUSE_ROOT=/tmp/fm-poolroot-live.oKg2/th bin/fm-spawn.sh s2-secondmate /tmp/fm-poolroot-live.oKg2/sm-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labB
+spawned s2-secondmate harness=sleep kind=scout window=primary:fm-s2-secondmate worktree=/tmp/fm-poolroot-live.oKg2/th/fm-homes/83ff0f99163d/.treehouse/qa2-39e933/1/qa2
+rc=0
+recorded worktree=/tmp/fm-poolroot-live.oKg2/th/fm-homes/83ff0f99163d/.treehouse/qa2-39e933/1/qa2
+worktree common dir=/tmp/fm-poolroot-live.oKg2/sm-side/qa2/.git
+project common dir=/tmp/fm-poolroot-live.oKg2/sm-side/qa2/.git
+S2 ROOT-OK
+pools: 
+<TH>/fm-homes/83ff0f99163d/.treehouse
+<TH>/fm-homes/83ff0f99163d/.treehouse/qa2-39e933
+<TH>/fm-homes/0ddafeda86af/.treehouse
+<TH>/fm-homes/0ddafeda86af/.treehouse/qa2-39e933
 
-=== S3 adversarial: a free slot created by ANOTHER clone sits in the secondmate's own pool root ===
-$ treehouse --root /tmp/fm-lab.gyZUYm/sm-home/state/treehouse status
+===== S2b same primary home again maps to the same root
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labA TREEHOUSE_ROOT=/tmp/fm-poolroot-live.oKg2/th bin/fm-spawn.sh s2b-primary-again /tmp/fm-poolroot-live.oKg2/primary-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labA
+spawned s2b-primary-again harness=sleep kind=scout window=primary:fm-s2b-primary-again worktree=/tmp/fm-poolroot-live.oKg2/th/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/2/qa2
+rc=0
+recorded worktree=/tmp/fm-poolroot-live.oKg2/th/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/2/qa2
+S2b SAME-ROOT-OK
 
-1     in-use       /tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
-                   bash (906649), bash (907623)
-/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
-/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
-/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
-/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2 common=/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git
-/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2 common=/tmp/fm-lab.gyZUYm/operator/qa2/.git
-foreign slot=/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
+===== S3 adversarial: a free slot created by the OTHER clone inside home B's root
+foreign slot (leased from primary-side clone)=/tmp/fm-poolroot-live.oKg2/th/fm-homes/83ff0f99163d/.treehouse/qa2-39e933/2/qa2
 
 🌳 Worktree returned to pool.
-foreign slot returned to pool (free)
+foreign slot common dir=/tmp/fm-poolroot-live.oKg2/primary-side/qa2/.git
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labB TREEHOUSE_ROOT=/tmp/fm-poolroot-live.oKg2/th bin/fm-spawn.sh s3-foreign /tmp/fm-poolroot-live.oKg2/sm-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labB
+error: treehouse get did not enter an isolated worktree within 60s (last seen '/tmp/fm-poolroot-live.oKg2/th/fm-homes/83ff0f99163d/.treehouse/qa2-39e933/2/qa2': it belongs to a different clone (its common git dir is '/tmp/fm-poolroot-live.oKg2/primary-side/qa2/.git', not the spawning project's '/tmp/fm-poolroot-live.oKg2/sm-side/qa2/.git'); spawning project '/tmp/fm-poolroot-live.oKg2/sm-side/qa2'); inspect window primary:fm-s3-foreign
+rc=1
+S3 no task meta published
+slot HEAD before=5d99a0eb3affbe5c3d97331dbb731606009999f5 after=5d99a0eb3affbe5c3d97331dbb731606009999f5
+slot reflog unchanged
+slot FETCH_HEAD unchanged (none)
 
-1     in-use       /tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
-                   bash (906649), bash (907623)
-2     available    /tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
-fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/sm-home
-error: treehouse get did not enter an isolated worktree within 60s (last seen '/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2': it belongs to a different clone (its common git dir is '/tmp/fm-lab.gyZUYm/operator/qa2/.git', not the spawning project's '/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git'); spawning project '/tmp/fm-lab.gyZUYm/sm-home/projects/qa2'); inspect window firstmate:fm-s2
-exit=1
-s2 meta exists? no
-foreign slot HEAD before=a8a7799aa0df258373039d036e242613efe693f9 after=a8a7799aa0df258373039d036e242613efe693f9
-foreign slot reflog lines before=1 after=1
-foreign slot FETCH_HEAD mtime before=none after=none
-foreign slot .fm-slot-owner: <none>
-foreign slot still exists? yes
+===== S4 adversarial: TREEHOUSE_ROOT under a $HOME subdir carrying AGENTS.md
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labA TREEHOUSE_ROOT=/tmp/fm-poolroot-live.oKg2/userhome/proj/pools bin/fm-spawn.sh s4-instructed /tmp/fm-poolroot-live.oKg2/primary-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labA
+error: Treehouse pool root '/tmp/fm-poolroot-live.oKg2/userhome/proj/pools/fm-homes/0ddafeda86af' lies under '/tmp/fm-poolroot-live.oKg2/userhome/proj', which carries agent instructions (CLAUDE.md or AGENTS.md) every task copy would load; refusing to spawn
+rc=1
+no pool root created under the instructed dir
 
-=== S4 legacy: task spawned by the PRE-change fm-spawn (default root) is torn down by the new code and returned by its recorded path ===
-fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/primary
-warning: /tmp/fm-lab.gyZUYm/primary/data/legacy1/launch-brief.md records no ship branch; defaulting to legacy branch fm/legacy1
-warning: /tmp/fm-lab.gyZUYm/primary/data/legacy1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode local-only - confirm its definition of done matches
-notice: legacy1 ships mode=local-only while the standing posture for qa2 is no-mistakes - less rigor than the captain's standing posture; proceed only on a current explicit captain instruction or an intake judgment you can state
-spawned legacy1 harness=sh kind=ship mode=local-only yolo=off window=firstmate:fm-legacy1 worktree=/tmp/fm-lab.gyZUYm/userhome/.treehouse/qa2-44745a/1/qa2
-old-spawn exit=0
-legacy recorded worktree=/tmp/fm-lab.gyZUYm/userhome/.treehouse/qa2-44745a/1/qa2
--> lives under the OLD default root ($HOME/.treehouse)
-default-root status before teardown:
-1     in-use       ~/.treehouse/qa2-44745a/1/qa2
-                   bash (955209), bash (956407)
-legacy work landed on local main
-teardown: reaping leaked worktree process(es) for legacy1: 955209 956407
-teardown: force-killing leaked worktree process(es) for legacy1: 955209 956407
+===== S5 adversarial: TREEHOUSE_ROOT inside the firstmate home
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labA TREEHOUSE_ROOT=/tmp/fm-poolroot-live.oKg2/labA/pools bin/fm-spawn.sh s5-inside-home /tmp/fm-poolroot-live.oKg2/primary-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labA
+error: Treehouse pool root '/tmp/fm-poolroot-live.oKg2/labA/pools/fm-homes/0ddafeda86af' lies inside this firstmate home '/tmp/fm-poolroot-live.oKg2/labA'; refusing to place task copies under its agent instructions
+rc=1
+no pool root created inside the home
 
-🌳 Worktree returned to pool.
-teardown legacy1 complete (window firstmate:fm-legacy1, worktree /tmp/fm-lab.gyZUYm/userhome/.treehouse/qa2-44745a/1/qa2)
-Backlog: legacy1 just finished (this home keeps no markdown backlog at /tmp/fm-lab.gyZUYm/primary/data/backlog.md). Update /tmp/fm-lab.gyZUYm/primary/data/backlog.md - move legacy1 to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
-teardown exit=0
-legacy1.meta remains? no
-default-root status after teardown:
-1     available    ~/.treehouse/qa2-44745a/1/qa2
-slot owner file after: <none>
-primary own-root status (p1 still in use):
-1     in-use       /tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
-                   bash (904789), bash (906208)
+===== S6 default base: TREEHOUSE_ROOT unset, $HOME/CLAUDE.md present, project treehouse.toml root='.'
+----- $ FM_HOME=/tmp/fm-poolroot-live.oKg2/labA TREEHOUSE_ROOT=<unset> bin/fm-spawn.sh s6-default /tmp/fm-poolroot-live.oKg2/primary-side/qa2 --scout --harness 'sleep 600'
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-poolroot-live.oKg2/labA
+spawned s6-default harness=sleep kind=scout window=primary:fm-s6-default worktree=/tmp/fm-poolroot-live.oKg2/userhome/.treehouse/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/1/qa2
+rc=0
+recorded worktree=/tmp/fm-poolroot-live.oKg2/userhome/.treehouse/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/1/qa2
+S6 DEFAULT-BASE-OK
+nothing created inside the project checkout
 
-=== cleanup: return live slots ===
-done
+===== tmux windows
+bash /home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M56ZCQT1D1HEF0CZ0CWH76YK
+fm-s1-primary <T>/th/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/1/qa2
+fm-s2-secondmate <T>/th/fm-homes/83ff0f99163d/.treehouse/qa2-39e933/1/qa2
+fm-s2b-primary-again <T>/th/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/2/qa2
+fm-s3-foreign <T>/th/fm-homes/83ff0f99163d/.treehouse/qa2-39e933/2/qa2
+fm-s4-instructed <T>/primary-side/qa2
+fm-s5-inside-home <T>/primary-side/qa2
+fm-s6-default <T>/userhome/.treehouse/fm-homes/0ddafeda86af/.treehouse/qa2-39e933/1/qa2
