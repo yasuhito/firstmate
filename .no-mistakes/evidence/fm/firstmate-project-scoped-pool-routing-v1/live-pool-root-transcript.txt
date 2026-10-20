@@ -1,0 +1,89 @@
+
+=== S1 primary home spawn allocates from <primary>/state/treehouse ===
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/primary
+warning: /tmp/fm-lab.gyZUYm/primary/data/p1/launch-brief.md records no ship branch; defaulting to legacy branch fm/p1
+warning: /tmp/fm-lab.gyZUYm/primary/data/p1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode local-only - confirm its definition of done matches
+notice: p1 ships mode=local-only while the standing posture for qa2 is no-mistakes - less rigor than the captain's standing posture; proceed only on a current explicit captain instruction or an intake judgment you can state
+spawned p1 harness=sh kind=ship mode=local-only yolo=off window=firstmate:fm-p1 worktree=/tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
+exit=0
+recorded worktree=/tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
+worktree common dir=/tmp/fm-lab.gyZUYm/primary/projects/qa2/.git
+project common dir=/tmp/fm-lab.gyZUYm/primary/projects/qa2/.git
+pool roots under primary state:
+default root ($HOME/.treehouse) contents (pools would appear as <name>-<hash>/):
+update-check.json
+firstmate:bash cwd=/home/yasuhito/.no-mistakes/worktrees/38526edaf053/01M56ZCQT1D1HEF0CZ0CWH76YK
+firstmate:fm-p1 cwd=/tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
+
+=== S2 secondmate home spawn allocates from <sm-home>/state/treehouse ===
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/sm-home
+warning: /tmp/fm-lab.gyZUYm/sm-home/data/s1/launch-brief.md records no ship branch; defaulting to legacy branch fm/s1
+warning: /tmp/fm-lab.gyZUYm/sm-home/data/s1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode local-only - confirm its definition of done matches
+notice: s1 ships mode=local-only while the standing posture for qa2 is no-mistakes - less rigor than the captain's standing posture; proceed only on a current explicit captain instruction or an intake judgment you can state
+spawned s1 harness=sh kind=ship mode=local-only yolo=off window=firstmate:fm-s1 worktree=/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
+exit=0
+recorded worktree=/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
+worktree common dir=/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git
+project common dir=/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git
+pool roots under sm state:
+default root contents:
+update-check.json
+
+=== S3 adversarial: a free slot created by ANOTHER clone sits in the secondmate's own pool root ===
+$ treehouse --root /tmp/fm-lab.gyZUYm/sm-home/state/treehouse status
+
+1     in-use       /tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
+                   bash (906649), bash (907623)
+/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
+/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
+/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
+/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2 common=/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git
+/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2 common=/tmp/fm-lab.gyZUYm/operator/qa2/.git
+foreign slot=/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
+
+🌳 Worktree returned to pool.
+foreign slot returned to pool (free)
+
+1     in-use       /tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/1/qa2
+                   bash (906649), bash (907623)
+2     available    /tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/sm-home
+error: treehouse get did not enter an isolated worktree within 60s (last seen '/tmp/fm-lab.gyZUYm/sm-home/state/treehouse/.treehouse/qa2-44745a/2/qa2': it belongs to a different clone (its common git dir is '/tmp/fm-lab.gyZUYm/operator/qa2/.git', not the spawning project's '/tmp/fm-lab.gyZUYm/sm-home/projects/qa2/.git'); spawning project '/tmp/fm-lab.gyZUYm/sm-home/projects/qa2'); inspect window firstmate:fm-s2
+exit=1
+s2 meta exists? no
+foreign slot HEAD before=a8a7799aa0df258373039d036e242613efe693f9 after=a8a7799aa0df258373039d036e242613efe693f9
+foreign slot reflog lines before=1 after=1
+foreign slot FETCH_HEAD mtime before=none after=none
+foreign slot .fm-slot-owner: <none>
+foreign slot still exists? yes
+
+=== S4 legacy: task spawned by the PRE-change fm-spawn (default root) is torn down by the new code and returned by its recorded path ===
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.gyZUYm/primary
+warning: /tmp/fm-lab.gyZUYm/primary/data/legacy1/launch-brief.md records no ship branch; defaulting to legacy branch fm/legacy1
+warning: /tmp/fm-lab.gyZUYm/primary/data/legacy1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode local-only - confirm its definition of done matches
+notice: legacy1 ships mode=local-only while the standing posture for qa2 is no-mistakes - less rigor than the captain's standing posture; proceed only on a current explicit captain instruction or an intake judgment you can state
+spawned legacy1 harness=sh kind=ship mode=local-only yolo=off window=firstmate:fm-legacy1 worktree=/tmp/fm-lab.gyZUYm/userhome/.treehouse/qa2-44745a/1/qa2
+old-spawn exit=0
+legacy recorded worktree=/tmp/fm-lab.gyZUYm/userhome/.treehouse/qa2-44745a/1/qa2
+-> lives under the OLD default root ($HOME/.treehouse)
+default-root status before teardown:
+1     in-use       ~/.treehouse/qa2-44745a/1/qa2
+                   bash (955209), bash (956407)
+legacy work landed on local main
+teardown: reaping leaked worktree process(es) for legacy1: 955209 956407
+teardown: force-killing leaked worktree process(es) for legacy1: 955209 956407
+
+🌳 Worktree returned to pool.
+teardown legacy1 complete (window firstmate:fm-legacy1, worktree /tmp/fm-lab.gyZUYm/userhome/.treehouse/qa2-44745a/1/qa2)
+Backlog: legacy1 just finished (this home keeps no markdown backlog at /tmp/fm-lab.gyZUYm/primary/data/backlog.md). Update /tmp/fm-lab.gyZUYm/primary/data/backlog.md - move legacy1 to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+teardown exit=0
+legacy1.meta remains? no
+default-root status after teardown:
+1     available    ~/.treehouse/qa2-44745a/1/qa2
+slot owner file after: <none>
+primary own-root status (p1 still in use):
+1     in-use       /tmp/fm-lab.gyZUYm/primary/state/treehouse/.treehouse/qa2-44745a/1/qa2
+                   bash (904789), bash (906208)
+
+=== cleanup: return live slots ===
+done
